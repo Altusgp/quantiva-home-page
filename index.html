@@ -923,6 +923,99 @@
         }
       }
     
+      /* contact */
+      .contact {
+        background: #fff;
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 80px;
+        align-items: start;
+      }
+      .contact .body-lg {
+        margin: 24px 0 0;
+      }
+      .contact-details {
+        margin: 44px 0 0;
+        display: grid;
+        gap: 26px;
+      }
+      .contact-details dt {
+        font: 700 12px/1.2 var(--body);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 8px;
+      }
+      .contact-details dd {
+        margin: 0;
+        font-size: 18px;
+        line-height: 1.55;
+        color: var(--navy);
+      }
+      .contact-details a:hover {
+        text-decoration: underline;
+      }
+      .contact-form {
+        background: #f4f7fb;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 40px;
+        display: grid;
+        gap: 20px;
+        box-shadow: 0 8px 30px rgba(6, 26, 53, 0.06);
+      }
+      .form-row {
+        display: grid;
+        gap: 8px;
+      }
+      .form-row label {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .form-row input,
+      .form-row textarea {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid #cfd9e7;
+        border-radius: 12px;
+        background: #fff;
+        color: var(--ink);
+        font-size: 16px;
+        resize: vertical;
+      }
+      .form-row input:focus,
+      .form-row textarea:focus {
+        outline: 2px solid var(--blue);
+        outline-offset: 1px;
+        border-color: var(--blue);
+      }
+      .form-row .invalid {
+        border-color: var(--red);
+      }
+      .contact-form .btn {
+        justify-self: start;
+        min-height: 52px;
+        padding: 0 28px;
+        font-size: 14px;
+      }
+      .form-note {
+        margin: 0;
+        font-size: 13px;
+        color: #738097;
+      }
+      @media (max-width: 900px) {
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .contact-form {
+          padding: 26px;
+        }
+      }
+
       /* section separation */
       main > section {
         border-top: 1px solid var(--line);
@@ -983,6 +1076,7 @@
           <a href="#approach" data-editable="">Approach</a>
           <a href="#crp" data-editable="">CRP Program</a>
           <a href="#learn" data-editable="">Learn More</a>
+          <a href="#contact" data-editable="">Contact</a>
         </nav>
         <a class="btn btn-ghost" href="#crp" data-node="" data-editable=""
           >Explore CRP</a
@@ -1256,6 +1350,57 @@
           </div>
         </div>
       </section>
+
+      <section class="section contact" id="contact">
+        <div class="wrap contact-grid">
+          <div class="contact-info">
+            <div class="eyebrow">Contact</div>
+            <h2 class="display small">Get in touch.</h2>
+            <p class="body-lg">
+              Questions about Quantiva DX or our development program? Send us a
+              message and our team will get back to you.
+            </p>
+            <dl class="contact-details">
+              <div>
+                <dt>Address</dt>
+                <dd>3004 Park Central Ave<br />Nicholasville, KY 40356</dd>
+              </div>
+              <div>
+                <dt>Phone</dt>
+                <dd><a href="tel:+18595928525">859-592-8525</a></dd>
+              </div>
+              <div>
+                <dt>Email</dt>
+                <dd>
+                  <a href="mailto:info@quantivadx.com">info@quantivadx.com</a>
+                </dd>
+              </div>
+            </dl>
+          </div>
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="form-row">
+              <label for="cf-name">Name</label>
+              <input id="cf-name" name="name" type="text" required autocomplete="name" />
+            </div>
+            <div class="form-row">
+              <label for="cf-email">Email</label>
+              <input id="cf-email" name="email" type="email" required autocomplete="email" />
+            </div>
+            <div class="form-row">
+              <label for="cf-subject">Subject</label>
+              <input id="cf-subject" name="subject" type="text" />
+            </div>
+            <div class="form-row">
+              <label for="cf-message">Message</label>
+              <textarea id="cf-message" name="message" rows="5" required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Send message</button>
+            <p class="form-note" id="contactNote" role="status">
+              Your message will be sent to info@quantivadx.com.
+            </p>
+          </form>
+        </div>
+      </section>
     </main>
 
     <footer class="footer" data-section="">
@@ -1266,6 +1411,7 @@
         <div class="footer-links" data-node="">
           <a href="#crp" data-editable="">CRP Card</a
           ><a href="about.html" data-editable="">About</a
+          ><a href="#contact" data-editable="">Contact</a
           ><a href="#top" data-editable="">Back to top ↑</a>
         </div>
       </div>
@@ -1605,6 +1751,34 @@
           a.download = "quantiva-dx-homepage.html";
           a.click();
           setTimeout(() => URL.revokeObjectURL(url), 500);
+        });
+      })();
+    </script>
+    <script>
+      (function () {
+        var form = document.getElementById("contactForm");
+        if (!form) return;
+        var note = document.getElementById("contactNote");
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var ok = true;
+          form.querySelectorAll("[required]").forEach(function (f) {
+            var bad = !f.value.trim() || (f.type === "email" && !f.checkValidity());
+            f.classList.toggle("invalid", bad);
+            if (bad) ok = false;
+          });
+          if (!ok) {
+            note.textContent = "Please fill in your name, a valid email and a message.";
+            return;
+          }
+          var d = new FormData(form);
+          var subject = d.get("subject") || "Website enquiry from " + d.get("name");
+          var body = "Name: " + d.get("name") + "
+Email: " + d.get("email") + "
+
+" + d.get("message");
+          window.location.href = "mailto:info@quantivadx.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+          note.textContent = "Opening your email app to send the message to info@quantivadx.com.";
         });
       })();
     </script>
