@@ -1754,11 +1754,33 @@
         });
       })();
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
       (function () {
+        // EmailJS settings: fill these in from https://dashboard.emailjs.com
+        var EMAILJS_PUBLIC_KEY = "Mi-GrkozRLtT-8Jg5";
+        var EMAILJS_SERVICE_ID = "service_3yfjtzm";
+        var EMAILJS_TEMPLATE_ID = "template_7obu43j";
+
         var form = document.getElementById("contactForm");
         if (!form) return;
         var note = document.getElementById("contactNote");
+        var button = form.querySelector("button[type=submit]");
+        var configured = EMAILJS_PUBLIC_KEY.indexOf("YOUR_") !== 0;
+        if (configured && window.emailjs) {
+          emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+        }
+
+        function mailtoFallback(d) {
+          var subject = d.get("subject") || "Website enquiry from " + d.get("name");
+          var body = "Name: " + d.get("name") + "
+Email: " + d.get("email") + "
+
+" + d.get("message");
+          window.location.href = "mailto:info@quantivadx.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+          note.textContent = "Opening your email app to send the message to info@quantivadx.com.";
+        }
+
         form.addEventListener("submit", function (e) {
           e.preventDefault();
           var ok = true;
@@ -1772,13 +1794,31 @@
             return;
           }
           var d = new FormData(form);
-          var subject = d.get("subject") || "Website enquiry from " + d.get("name");
-          var body = "Name: " + d.get("name") + "
-Email: " + d.get("email") + "
-
-" + d.get("message");
-          window.location.href = "mailto:info@quantivadx.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-          note.textContent = "Opening your email app to send the message to info@quantivadx.com.";
+          if (!configured || !window.emailjs) {
+            mailtoFallback(d);
+            return;
+          }
+          button.disabled = true;
+          note.textContent = "Sending...";
+          emailjs
+            .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+              from_name: d.get("name"),
+              from_email: d.get("email"),
+              subject: d.get("subject") || "Website enquiry",
+              message: d.get("message"),
+              reply_to: d.get("email"),
+              to_email: "info@quantivadx.com",
+            })
+            .then(function () {
+              form.reset();
+              note.textContent = "Thank you! Your message has been sent. We will get back to you soon.";
+            })
+            .catch(function () {
+              note.textContent = "Sorry, something went wrong. Please email us at info@quantivadx.com.";
+            })
+            .finally(function () {
+              button.disabled = false;
+            });
         });
       })();
     </script>
