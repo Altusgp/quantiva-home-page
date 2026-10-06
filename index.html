@@ -202,6 +202,20 @@
         color: var(--navy);
         background: rgba(255, 255, 255, 0.52);
       }
+      .btn-blue {
+        background: var(--blue);
+        color: #fff;
+        box-shadow: 0 12px 30px rgba(49, 92, 170, 0.22);
+      }
+      .btn-blue:hover {
+        background: var(--navy);
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 48px;
+      }
 
       /* hero */
       .hero {
@@ -1096,8 +1110,17 @@
               diagnostics—one designed to make quantitative biomarker
               information faster, simpler and more accessible.
             </p>
+            <p class="hero-sub" data-editable="">Our first program, a rapid quantitative test for C-reactive protein, is now in development.</p>
             <div class="hero-note" data-editable="">
               Development-stage diagnostic technology
+            </div>
+            <div class="hero-actions" data-node="">
+              <a class="btn btn-blue" href="#crp" data-editable=""
+                >Explore CRP Card</a
+              >
+              <a class="btn btn-ghost" href="#contact" data-editable=""
+                >Get In Touch</a
+              >
             </div>
           </div>
         </div>
@@ -1113,6 +1136,12 @@
             </div>
             <div>be both.</div>
           </h2>
+          <p class="hero-sub" data-editable="">
+             Today, diagnostic testing often asks clinicians to choose. Rapid tests deliver answers quickly,
+              but frequently reduce them to a simple positive or negative. Quantitative results tell a fuller story, 
+              but usually depend on laboratory systems, and the wait that comes with them. Quantiva DX is built on 
+              the belief that this trade-off shouldn't be necessary. Three principles guide our work:
+            </p>
           <div class="story-grid" data-node="">
             <div class="story-card" data-node="">
               <div class="num" data-editable="">01 / SPEED</div>
@@ -1150,9 +1179,7 @@
           </h2>
           <p class="body-xl" data-editable="">
             Important biomarker information is often tied to instrumentation,
-            laboratory infrastructure, specialized workflows and time. Quantiva
-            DX is exploring what changes when more of that complexity can be
-            designed out.
+            laboratory infrastructure, specialized workflows and time. 
           </p>
           <div class="friction-track" data-node="">
             <div class="friction-item" data-node="">
@@ -1183,6 +1210,10 @@
               >
             </div>
           </div>
+           <p class="body-xl" data-editable="">
+           QuantivaDX is exploring what changes when more of that complexity can be
+            designed out.
+          </p>
         </div>
       </section>
 
