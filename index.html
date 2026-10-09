@@ -91,7 +91,7 @@
         font-size: clamp(38px, 4.8vw, 68px);
       }
       .display .tone {
-        color: #8795ad;
+        color: #b1122d;
       }
       .display .blue {
         color: var(--navy);
@@ -221,24 +221,41 @@
       .hero {
         min-height: 0;
         display: grid;
-        grid-template-columns: minmax(0, 1100px);
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
         align-items: center;
-        gap: 70px;
+        gap: 56px;
         padding: 0;
+      }
+      .hero .hero-sub {
+        font-size: clamp(17px, 1.45vw, 21px);
+        margin-top: 20px;
+        max-width: 640px;
+      }
+      .hero .hero-note {
+        margin-top: 0;
+      }
+      .hero-visual {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .hero-visual img {
+        width: min(100%, 470px);
+        height: auto;
+        filter: drop-shadow(0 28px 36px rgba(6, 26, 53, 0.2));
       }
       .hero-copy {
         padding-top: 12px;
       }
       .hero h1 {
         font-family: var(--heading);
-        font-size: clamp(48px, 6vw, 92px);
+        font-size: clamp(40px, 4.7vw, 70px);
         line-height: 1.04;
         letter-spacing: -0.035em;
         font-weight: 600;
         margin: 18px 0 0;
       }
       .hero h1 .tone {
-        color: #8795ad;
+        color: #b1122d;
       }
       .hero-sub {
         font-size: clamp(19px, 1.6vw, 25px);
@@ -428,7 +445,7 @@
         color: #9bb7e6;
       }
       .friction .display .tone {
-        color: #8ea2c0;
+        color: #b1122d;
       }
       .friction .body-xl {
         color: #becbe0;
@@ -571,7 +588,7 @@
         color: #0b1230;
       }
       .proof h2 .tone {
-        color: #9aa5ba;
+        color: #b1122d;
       }
       .proof p {
         font-size: 18px;
@@ -638,7 +655,7 @@
         max-width: 1100px;
       }
       .cta .display .tone {
-        color: #7591bc;
+        color: #b1122d;
       }
       .cta p {
         font-size: 20px;
@@ -870,6 +887,12 @@
         .hero {
           padding-top: 54px;
         }
+        .hero-visual {
+          justify-content: center;
+        }
+        .hero-visual img {
+          width: min(100%, 380px);
+        }
         .hero-art {
           min-height: 500px;
         }
@@ -1039,7 +1062,7 @@
         background: linear-gradient(180deg, #e6edf7 0%, #f4f7fb 100%);
         border-top: 0;
         border-bottom: 1px solid #cfd9e7;
-        padding: clamp(40px, 5vw, 72px) 0;
+        padding: clamp(36px, 4vw, 56px) 0;
       }
       .statement,
       .visual-interlude,
@@ -1122,6 +1145,14 @@
                 >Get In Touch</a
               >
             </div>
+          </div>
+          <div class="hero-visual" data-node="">
+            <img
+              src="images/Quantiva%20DX%20Hero%20Section%20Image.png"
+              alt="Quantiva DX CRP Rapid Test Card: box, single-use pouch and test card"
+              width="1133"
+              height="1215"
+            />
           </div>
         </div>
       </section>
