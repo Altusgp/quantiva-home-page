@@ -532,10 +532,9 @@
         padding: 56px 0;
       }
       .visual-frame {
-        height: min(70vw, 760px);
-        min-height: 520px;
+        aspect-ratio: 1614 / 891;
         border-radius: 32px;
-        background: #edf2f7;
+        background: #e8f0f6;
         border: 1px solid #e0e6ef;
         overflow: hidden;
         position: relative;
@@ -543,6 +542,12 @@
       .visual-frame .drop-hint {
         position: relative;
         z-index: 1;
+      }
+      .visual-frame .dropzone,
+      .device-frame .dropzone {
+        position: absolute;
+        inset: 0;
+        min-height: 0;
       }
       .visual-caption {
         position: absolute;
@@ -571,15 +576,15 @@
         align-items: center;
       }
       .device-frame {
-        min-height: 620px;
+        aspect-ratio: 1 / 1;
+        max-width: 700px;
+        justify-self: center;
+        width: 100%;
         border-radius: 34px;
         background: linear-gradient(150deg, #fff, #e9eff6);
         border: 1px solid #dbe3ed;
         overflow: hidden;
         position: relative;
-      }
-      .device-frame .dropzone {
-        min-height: 620px;
       }
       .proof h2 {
         font: 700 clamp(54px, 6vw, 94px)/0.94 var(--heading);
@@ -599,16 +604,16 @@
       .proof .eyebrow {
         font-size: 11px;
       }
-      @media (max-width: 1200px) {
-        .proof-tags {
-          flex-wrap: wrap;
-        }
-      }
       .proof-tags {
         display: flex;
         gap: 10px;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         margin: 34px 0 0;
+      }
+      @media (min-width: 1360px) {
+        .proof-tags {
+          flex-wrap: nowrap;
+        }
       }
       .pill {
         padding: 10px 13px;
@@ -934,6 +939,35 @@
           min-height: auto;
           gap: 42px;
         }
+        .nav .btn {
+          white-space: nowrap;
+          padding: 0 16px;
+        }
+        .hero-note {
+          font-size: clamp(8.5px, 2.75vw, 11px);
+          letter-spacing: 0.04em;
+          gap: 8px;
+          white-space: nowrap;
+        }
+        .hero-note:before {
+          width: 22px;
+        }
+        .visual-frame {
+          aspect-ratio: 1614 / 1060;
+          border-radius: 22px;
+        }
+        .visual-frame .dropzone img {
+          object-fit: contain;
+          object-position: center top;
+        }
+        .visual-caption {
+          left: 12px;
+          bottom: 12px;
+          padding: 7px 11px;
+          font-size: clamp(8px, 2.5vw, 11px);
+          letter-spacing: 0.08em;
+          white-space: nowrap;
+        }
         .hero-art {
           min-height: 420px;
         }
@@ -1129,7 +1163,7 @@
               Development-stage diagnostic technology
             </div>
             <h1 data-editable="" class="">
-              Redefining Access to Quantitative Diagnostics
+              Redefining Access<br />to Quantitative Diagnostics
             </h1>
             <p class="hero-sub" data-editable="">
               Quantiva DX is developing a new approach to point-of-care
